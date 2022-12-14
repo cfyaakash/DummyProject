@@ -1,0 +1,53 @@
+<!--<h2>My stories</h2>-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+  <div class="container mt-5">
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search..."
+      [(ngModel)]="filterTerm"
+    />
+  </div>
+    <div id="comp-render" *ngIf="display">
+  <app-editstory [particularstory]="Editstory"></app-editstory>
+</div>
+    <app-story-add></app-story-add>
+    <br>
+    <br>
+
+
+    <ol>
+    <li *ngFor="let story of stories | async | filter: filterTerm | paginate: {itemsPerPage: 20, currentPage: p, totalItems: total }">
+    <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><a href = '{{story.url}}'>{{story.title}}</a></h5>
+            <p class="card-text">{{story.body_text}}</p>
+            <p >Published on :-{{story.pub_date}}</p>
+<!--            <p>Source:- {{story.source}}</p>-->
+            <p>Source:- {{story.source?.name}}</p>
+<!--            <p *ngfor = 'let c of story.companies?.name'> Companies :- {{c}}</p>-->
+
+            <button class="btn btn-primary" (click)="deleteStory(story.id)" style="margin-left:5px">Delete </button>
+            <button class="btn btn-primary" (click)="editStory(story)" style="margin-left:5px ">Edit </button>
+            <button class="btn btn-primary" (click)="functionedit(story.id)" style="margin-left:5px ">Edit new </button>
+
+              <br>
+          </div>
+
+              </div>
+         </li>
+  </ol>
+
+  </div>
+<pagination-controls (pageChange)="pageChangeEvent($event)" ></pagination-controls>
+
+
+
+
+
+
+
+

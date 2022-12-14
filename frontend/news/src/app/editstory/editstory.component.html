@@ -1,0 +1,70 @@
+
+<div class="bread-crumb">
+    <div>    <span>Add Story</span>   </div>
+</div>
+<div class="container flex">
+        <div class="form">
+            <form method="put" action="" [formGroup]="storyeditForm" (ngSubmit)="saveStory(particularstory.id)">
+
+                <table>
+                    <tr>
+                        <td>Story title:</td>
+                        <td>
+                            <input class="input" type="text" formControlName="title" [ngModel] = "particularstory.title">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Body Text</td>
+                        <td>
+                            <input class="input" type="text" formControlName="body_text" [ngModel] = "particularstory.body_text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Source</td>
+                        <select  single formControlName = "source" [ngModel] = "particularstory.source">
+
+                        <option *ngFor="let source of sources | async " [ngValue]="source">
+                          {{source.name}}</option>
+                     </select>
+                    </tr>
+
+                  <tr>
+                        <td>Published on</td>
+                        <td>
+                            <input class="input" type="text" formControlName="pub_date" [ngModel] = "particularstory.pub_date">
+                        </td>
+                    </tr>
+
+<!--                  <tr>-->
+<!--                        <td>client</td>-->
+<!--                        <td>-->
+<!--                            <input class="input" type="text" formControlName="client">-->
+<!--                        </td>-->
+<!--                    </tr>-->
+
+                   <tr>
+                        <td>url</td>
+                        <td>
+                            <input class="input" type="text" formControlName="url" [ngModel] = "particularstory.url">
+                        </td>
+                    </tr>
+                   <tr>
+                        <td>company</td>
+
+                     <select multiple formControlName = "companies" [ngModel] = "particularstory.companies">
+                        <option *ngFor="let suit of company | async " [ngValue]="suit">
+                          {{suit.name}}</option>
+                     </select>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="center">
+                                <button type="submit">submit</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+</div>

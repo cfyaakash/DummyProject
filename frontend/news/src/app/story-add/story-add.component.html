@@ -1,0 +1,155 @@
+
+<!--<div class="bread-crumb">-->
+<!--    <div>    <span>Add Story</span>   </div>-->
+<!--</div>-->
+<!--<div class="container flex">-->
+<!--        <div class="form">-->
+<!--            <form method="post" action="" [formGroup]="storyForm" (ngSubmit)="saveStory()">-->
+<!--                <table>-->
+<!--                    <tr>-->
+<!--                        <td>Story title:</td>-->
+<!--                        <td>-->
+<!--                            <input class="input" type="text" formControlName="title" >-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td>Body Text</td>-->
+<!--                        <td>-->
+<!--                            <input class="input" type="text" formControlName="body_text">-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td>Source</td>-->
+<!--                        <select  single formControlName = "source">-->
+
+<!--                        <option *ngFor="let source of sources | async " [ngValue]="source">-->
+<!--                          {{source.name}}</option>-->
+<!--                     </select>-->
+<!--                    </tr>-->
+
+<!--                  <tr>-->
+<!--                        <td>Published on</td>-->
+<!--                        <td>-->
+<!--                            <input class="input" type="text" formControlName="pub_date">-->
+<!--                        </td>-->
+<!--                    </tr>-->
+
+<!--&lt;!&ndash;                  <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>client</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <input class="input" type="text" formControlName="client">&ndash;&gt;-->
+<!--&lt;!&ndash;                        </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </tr>&ndash;&gt;-->
+
+<!--                   <tr>-->
+<!--                        <td>url</td>-->
+<!--                        <td>-->
+<!--                            <input class="input" type="text" formControlName="url">-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                   <tr>-->
+<!--                        <td>company</td>-->
+
+<!--                     <select multiple formControlName = "companies">-->
+<!--                        <option *ngFor="let suit of company | async " [ngValue]="suit">-->
+<!--                          {{suit.name}}</option>-->
+<!--                     </select>-->
+
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td colspan="2">-->
+<!--                            <div class="center">-->
+<!--                                <button type="submit">submit</button>-->
+<!--                            </div>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                </table>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--</div>-->
+
+<div class="modal" role="dialog">
+<ng-template #content let-modal>
+  <div class="modal-content" style="z-index: 1056">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Story Form</h4>
+        <button type="button" #closebtn class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form method="post" [formGroup]="storyForm" (ngSubmit)="saveStory()">
+
+        <div class="mb-3">
+           <label>Story Title:</label>
+           <div class="input-group">
+             <input name="title" class="form-control" formControlName="title" required>
+           </div>
+           <span *ngIf="title && title.invalid" class="errormessage">Please Enter a valid title</span>
+        </div>
+
+         <div class="mb-3">
+           <label>Body:</label>
+           <div class="input-group">
+             <input name="body_text" class="form-control" formControlName="body_text" required>
+           </div>
+           <span *ngIf="title && title.invalid" class="errormessage">Please Enter body text</span>
+        </div>
+
+        <div class="mb-3">
+           <label>URL:</label>
+           <div class="input-group">
+             <input name="url" class="form-control" formControlName="url">
+           </div>
+           <span *ngIf="url && url.invalid" class="errormessage">Please Enter valid url</span>
+        </div>
+
+
+        <div class="mb-3">
+           <label> Source:</label>
+           <div class="input-group">
+             <select class="form-control" formControlName="source" >
+                        <option *ngFor="let item of source" [ngValue]="item">{{item.name}}</option>
+                    </select>
+           </div>
+           <span *ngIf="source && source.invalid" class="errormessage">Please choose a source</span>
+        </div>
+
+        <div class="mb-3">
+           <label>Published on:</label>
+           <div class="input-group">
+             <input name="pub_date" class="form-control" formControlName="pub_date">
+           </div>
+           <span *ngIf="pub_date && pub_date.invalid" class="errormessage">Please Enter Published date</span>
+        </div>
+
+         <div class="mb-3">
+           <label>Companies:</label>
+           <div class="input-group">
+             <select multiple class="form-control" formControlName="companies" >
+                        <option *ngFor="let item of company" [ngValue]="item">{{item.name}}</option>
+                    </select>
+           </div>
+           <span *ngIf="companies && companies.invalid" class="errormessage">Please select tag companies</span>
+        </div>
+
+        <div class="mb-3">
+
+            <div class="input-group">
+              <button [disabled]="storyForm.invalid" type="submit" class="btn btn-primary">Save</button>
+            </div>
+            <span [ngClass]="errorclass" >{{errormessage}}</span>
+        </div>
+      </form>
+      </div>
+    <div class="modal-footer">
+        <button style="display: none;" type="button" class="btn btn-outline-dark"
+            (click)="modal.close('Save click')">Save</button>
+    </div>
+  </div>
+</ng-template>
+</div>
+<button class="btn btn-primary" #popupbtn id="popupbtn" (click)="open()">Add New</button>
+
+
+
+
+

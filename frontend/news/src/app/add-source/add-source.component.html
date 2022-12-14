@@ -1,0 +1,91 @@
+
+<!--<div class="bread-crumb">-->
+<!--    <div>    <span>Add Source</span>   </div>-->
+<!--</div>-->
+<!--<div class="container flex">-->
+<!--        <div class="form">-->
+<!--            <form method="post" action="" [formGroup]="sourceForm" (ngSubmit)="saveSource()">-->
+
+<!--                <table>-->
+<!--                    <tr>-->
+<!--                        <td>Source Name:</td>-->
+<!--                        <td>-->
+<!--                            <input class="input" type="text" formControlName="name">-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td>Source URL:</td>-->
+<!--                        <td>-->
+<!--                            <input class="input" type="url" formControlName="url">-->
+<!--                        </td>-->
+<!--                    </tr>-->
+
+<!--                     <tr>-->
+<!--                        <td>Source client:</td>-->
+<!--                        <td>-->
+<!--                            <input class="input" type="number" formControlName="client">-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td colspan="2">-->
+<!--                            <div class="center">-->
+<!--                                <button type="submit">submit</button>-->
+<!--                            </div>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                </table>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--</div>-->
+<div class="modal" role="dialog">
+<ng-template #content let-modal>
+  <div class="modal-content" style="z-index: 1056">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Source Form</h4>
+        <button type="button" #closebtn class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form method="post" [formGroup]="sourceForm" (ngSubmit)="saveSource()">
+
+<!--         <div class="mb-3">-->
+<!--           <label>Id:</label>-->
+<!--           <div class="input-group">-->
+<!--             <input name="id" class="form-control" formControlName="id">-->
+<!--           </div>-->
+<!--&lt;!&ndash;           <span *ngIf="name && name.invalid" class="errormessage">Please Enter valid name</span>&ndash;&gt;-->
+<!--         </div>-->
+
+
+        <div class="mb-3">
+           <label>Source Name:</label>
+           <div class="input-group">
+             <input name="name" class="form-control" formControlName="name" required>
+           </div>
+           <span *ngIf="name && name.invalid" class="errormessage">Please Enter valid name</span>
+         </div>
+
+         <div class="mb-3">
+           <label>Source URL:</label>
+           <div class="input-group">
+             <input name="url" class="form-control" formControlName="url">
+           </div>
+           <span *ngIf="url && url.invalid" class="errormessage">Please Enter valid url</span>
+         </div>
+
+          <div class="mb-3">
+
+            <div class="input-group">
+              <button [disabled]="sourceForm.invalid" type="submit" class="btn btn-primary">Save</button>
+            </div>
+            <span [ngClass]="errorclass" >{{errormessage}}</span>
+        </div>
+      </form>
+      </div>
+    <div class="modal-footer">
+        <button style="display: none;" type="button" class="btn btn-outline-dark"
+            (click)="modal.close('Save click')">Save</button>
+    </div>
+  </div>
+</ng-template>
+</div>
+<button class="btn btn-primary" #popupbtn id="popupbtn" (click)="open()">Add New</button>

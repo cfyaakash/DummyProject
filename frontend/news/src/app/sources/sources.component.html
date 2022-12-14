@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<style>
+  .modal-backdrop.show {
+    z-index: 100 !important;
+  }
+
+</style>
+
+ <div class="container mt-5">
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search..."
+      [(ngModel)]="filterTerm"
+    />
+  </div>
+   <div id="comp-render" *ngIf="display">
+            <app-editsource [particularsource]="Editsource"></app-editsource>
+   </div>
+
+   <app-add-source></app-add-source>
+   <br>
+   <br>
+<ol>
+  <li *ngFor="let source of sources | async | filter: filterTerm | paginate: {itemsPerPage: 5, currentPage: p, totalItems: total }">
+         <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{source.name}}</h5>
+            <p>URL:- <a href ='{{source.url}}'>{{source.url}}</a></p>
+            <a class="btn btn-primary" href='fetch/{{source.id}}' role="button" style="margin-left:5px ">Fetch</a>
+             <button class="btn btn-primary" (click)="deleteSource(source.id)" style="margin-left:5px">Delete </button>
+            <button class="btn btn-primary" (click)="editSource(source)" style="margin-left:5px ">Edit </button>
+            <button class="btn btn-primary" (click)="functionedit(source.id)" style="margin-left:5px ">Edit new </button>
+             <br>
+
+          </div>
+              </div>
+
+
+  </li>
+</ol>
+ </div>
+<pagination-controls (pageChange)="pageChangeEvent($event)" ></pagination-controls>
+
+
+

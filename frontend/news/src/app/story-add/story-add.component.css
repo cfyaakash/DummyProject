@@ -1,0 +1,13 @@
+.modal-backdrop.show {
+    z-index: 100 !important;
+}
+.errormessage{
+    color: red;
+}
+
+.sucessmessage{
+    color: green;
+}
+
+.btn-close{
+color : red ;}

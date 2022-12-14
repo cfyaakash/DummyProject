@@ -1,0 +1,39 @@
+
+<div class="bread-crumb">
+    <div>    <span>Update Source</span>   </div>
+</div>
+<div class="container flex">
+        <div class="form">
+            <form method="post" action="" [formGroup]="editsourceForm" (ngSubmit)="saveSource(particularsource.id)">
+
+                <table>
+                    <tr>
+                        <td>Source Name:</td>
+                        <td>
+                            <input class="input" type="text" formControlName="name" [ngModel] = "particularsource.name">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Source URL:</td>
+                        <td>
+                            <input class="input" type="url" formControlName="url" [ngModel] = "particularsource.url">
+                        </td>
+                    </tr>
+
+<!--                     <tr>-->
+<!--                        <td>Source client:</td>-->
+<!--                        <td>-->
+<!--                            <input class="input" type="number" formControlName="client" [ngModel] = "particularstory.name">-->
+<!--                        </td>-->
+<!--                    </tr>-->
+                    <tr>
+                        <td colspan="2">
+                            <div class="center">
+                                <button type="submit">submit</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+</div>
